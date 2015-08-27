@@ -1,0 +1,23 @@
+<!doctype html>
+<head>
+    <title>Seed module demo</title>
+    <script src="../dist/libs.js"></script>
+    <script src="../dist/bundle.js"></script>
+    <script src="demoapp.js"></script>
+
+</head>
+<body ng-app="demoApp" ng-controller="main">
+
+    <div>
+        <h1>Hello</h1>
+        {{foo}}
+    </div>
+    <div>
+        <h1>Math</h1>
+        <input type="number" ng-model="valueA"> +
+        <input type="number" ng-model="valueB"> =
+        <span>{{sum}}</span>
+    </div>
+</body>
+
+</html>
