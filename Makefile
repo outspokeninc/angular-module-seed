@@ -13,6 +13,11 @@ buildsrc:
 watchsrc:
 	$(BIN)/watchify src/index.js -x angular -x lodash -o dist/bundle.js
 
+browsersync:
+	$(BIN)/browser-sync start --server --startPath demo/index.html --files "dist/*, demo/*"
 
 build: buildlibs buildsrc
+
+# run this with make -j dev
+dev: watchsrc browsersync
 

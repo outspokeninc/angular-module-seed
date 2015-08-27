@@ -1,6 +1,6 @@
 module.exports = function($scope, math) {
   
-  $scope.foo = 'Foo, I say... FOO!!!!';
+  $scope.foo = 'Foo, I say... FOO!!';
 
   $scope.valueA = 0;
   $scope.valueB = 0;
