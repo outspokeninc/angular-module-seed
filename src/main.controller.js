@@ -1,4 +1,4 @@
-module.exports = function($scope, math) {
+module.exports = function($scope, math, restClient) {
   
   $scope.foo = 'Foo, I say... FOO!!';
 
@@ -7,6 +7,12 @@ module.exports = function($scope, math) {
 
   $scope.$watchGroup(['valueA', 'valueB'], function() {
     $scope.sum = math.addTwoValues($scope.valueA, $scope.valueB);
+  });
+
+  $scope.restData = 'not loaded';
+
+  restClient.getData().then(function(data) {
+    $scope.restData = data;
   });
 
 };

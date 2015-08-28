@@ -5,9 +5,10 @@ var angular = require('angular');
 module.exports = angular.module('seed-module', [])
   .constant('_', require('lodash'))
   .controller('main', require('./main.controller'))
-  .service('math', require('./math.service'));
-},{"./main.controller":2,"./math.service":3,"angular":"angular","lodash":"lodash"}],2:[function(require,module,exports){
-module.exports = function($scope, math) {
+  .service('math', require('./math.service'))
+  .service('restClient', require('./rest-client.service'));
+},{"./main.controller":2,"./math.service":3,"./rest-client.service":4,"angular":"angular","lodash":"lodash"}],2:[function(require,module,exports){
+module.exports = function($scope, math, restClient) {
   
   $scope.foo = 'Foo, I say... FOO!!';
 
@@ -18,17 +19,37 @@ module.exports = function($scope, math) {
     $scope.sum = math.addTwoValues($scope.valueA, $scope.valueB);
   });
 
+  $scope.restData = 'not loaded';
+
+  restClient.getData().then(function(data) {
+    $scope.restData = data;
+  });
+
 };
 },{}],3:[function(require,module,exports){
 module.exports = function(_) {
 
-  this.addTwoValues = function(a, b) {
+  function addTwoValues(a, b) {
     return a + b;
-  };
+  }
 
-  this.sumArray = function(array) {
+  function sumArray(array) {
     return _.sum(array);
-  };
+  }
 
+  return {
+    addTwoValues: addTwoValues
+  }
+
+};
+},{}],4:[function(require,module,exports){
+module.exports = function($http) {
+  return {
+    getData: function() {
+      return $http.get('/dist/rest-client-data.json').then(function(result) {
+        return result.data;
+      });
+    }
+  }
 };
 },{}]},{},[1]);

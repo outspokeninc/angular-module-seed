@@ -1,11 +1,15 @@
 module.exports = function(_) {
 
-  this.addTwoValues = function(a, b) {
+  function addTwoValues(a, b) {
     return a + b;
-  };
+  }
 
-  this.sumArray = function(array) {
+  function sumArray(array) {
     return _.sum(array);
-  };
+  }
+
+  return {
+    addTwoValues: addTwoValues
+  }
 
 };
